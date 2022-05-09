@@ -1,5 +1,5 @@
 # Node_ApiRestconExpress
-Api de ventas en node utilizando docker, sequelize y postgres
+Api de ventas con node utilizando docker, sequelize y postgres
 
 comando para las migraciones con heroku: heroku run npm run migrations:run.
 
