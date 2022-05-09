@@ -7,10 +7,24 @@ const PASSWORD = encodeURIComponent(config.dbPassword);
 const URI = `postgres://${USER}:${PASSWORD}@${config.dbHost}:${config.dbPort}/${config.dbName}`;
 /* const URI = `mysql://${USER}:${PASSWORD}@${config.dbHost}:${config.dbPort}/${config.dbName}`; */
 
-const sequelize = new Sequelize(URI, {
+const option = {
+  dialect: 'postgres',
+  logging: config.isProd ? false : true,
+};
+
+if (config.isProd) {
+  option.ssl = {
+    rejectUnauthorized: false,
+  };
+}
+
+const sequelize = new Sequelize(URI, option);
+
+//PARA UTILIZARLO NORMAL SIN HEROKU
+/* const sequelize = new Sequelize(URI, {
   dialect: 'postgres',
   logging: console.log,
-});
+}); */
 
 // PARA MYSQL
 /* const sequelize = new Sequelize(URI, {
