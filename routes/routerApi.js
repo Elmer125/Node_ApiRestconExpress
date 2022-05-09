@@ -10,7 +10,11 @@ function routerApi(app) {
   app.use('/api/v1', router);
 
   router.get('/', (req, res) => {
-    res.send('Hola mi server en express');
+    res.send(`<h1>Api de ventas con node utilizando docker y sequelize con postgres</h1>
+              <a href="https://guarded-anchorage-24500.herokuapp.com/api/v1/products">Productos</a>
+              <a href="https://guarded-anchorage-24500.herokuapp.com/api/v1/users">usuarios</a>
+              <a href="https://guarded-anchorage-24500.herokuapp.com/api/v1/categories">Categorias</a>
+    `);
   });
   router.use('/products', productsRouter);
   router.use('/users', usersRouter);
