@@ -9,7 +9,11 @@ const {
   boomErrorHandler,
 } = require('./middlewares/errorHandler');
 app.use(express.json());
-const whiteList = ['http://localhost:8080','', 'https://myapp.co'];
+const whiteList = [
+  'http://localhost:8080',
+  '',
+  ' https://guarded-anchorage-24500.herokuapp.com/',
+];
 const options = {
   origin: (origin, callback) => {
     if (whiteList.includes(origin) || !origin) {
@@ -20,6 +24,8 @@ const options = {
   },
 };
 app.use(cors(options));
+// se encuentra la logica donde estan definidas las estrategias de auth
+require('./utils/auth');
 routerApi(app);
 
 app.use(logErrors);
